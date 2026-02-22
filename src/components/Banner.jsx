@@ -17,7 +17,7 @@ function Banner({ position = 'top' }) {
 
   const loadBanners = async () => {
     try {
-      const res = await fetch(`API_URL/banners?position=${position}`);
+      const res = await fetch(`${API_URL}/banners?position=${position}`);
       const data = await res.json();
       setBanners(data);
     } catch (error) {

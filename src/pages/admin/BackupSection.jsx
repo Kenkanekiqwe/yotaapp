@@ -16,7 +16,7 @@ function BackupSection({ backups, onAction, loadData }) {
   };
 
   const handleDownloadBackup = (name) => {
-    window.open(`API_URL/admin/backup/download?name=${encodeURIComponent(name)}`, '_blank');
+    window.open(`${API_URL}/admin/backup/download?name=${encodeURIComponent(name)}`, '_blank');
   };
 
   return (

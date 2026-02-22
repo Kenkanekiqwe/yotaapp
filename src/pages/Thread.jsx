@@ -36,7 +36,7 @@ function Thread() {
       setThread(data)
       if (data.posts && data.posts.length > 0) {
         const ids = data.posts.map(p => p.id).join(',')
-        const res = await fetch(`API_URL/posts/reactions?ids=${ids}`)
+        const res = await fetch(`${API_URL}/posts/reactions?ids=${ids}`)
         const rdata = await res.json()
         setReactions(rdata || {})
       } else {
@@ -69,7 +69,7 @@ function Thread() {
   const handleReact = async (postId, reaction) => {
     if (!user) return
     try {
-      const res = await fetch(`API_URL/posts/${postId}/react`, {
+      const res = await fetch(`${API_URL}/posts/${postId}/react`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ userId: user.id, reaction })
@@ -87,7 +87,7 @@ function Thread() {
     if (!user) return
     if (post.rep_given || post.author_id === user.id) return
     try {
-      const res = await fetch(`API_URL/posts/${post.id}/rep`, {
+      const res = await fetch(`${API_URL}/posts/${post.id}/rep`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ userId: user.id })
@@ -122,7 +122,7 @@ function Thread() {
     e.preventDefault()
     if (!reportPost || !reportReason.trim()) return
     try {
-      await fetch('API_URL/reports', {
+      await fetch(`${API_URL}/reports', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

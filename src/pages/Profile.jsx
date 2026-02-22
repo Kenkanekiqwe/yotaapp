@@ -25,7 +25,7 @@ function Profile() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await fetch(`API_URL/users/${username}`)
+        const res = await fetch(`${API_URL}/users/${username}`)
         const data = await res.json()
         setProfileUser(data)
         setFormData({
@@ -47,7 +47,7 @@ function Profile() {
 
   useEffect(() => {
     if (isOwnProfile && profileUser) {
-      fetch(`API_URL/users/${username}/settings`)
+      fetch(`${API_URL}/users/${username}/settings`)
         .then(r => r.json())
         .then(data => {
           setProfileSettings(data)
@@ -64,7 +64,7 @@ function Profile() {
   const handleSaveProfile = async (e) => {
     e.preventDefault()
     try {
-      await fetch(`API_URL/users/${username}`, {
+      await fetch(`${API_URL}/users/${username}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ userId: user.id, ...formData })
@@ -80,7 +80,7 @@ function Profile() {
   const handleSaveSettings = async (e) => {
     e.preventDefault()
     try {
-      await fetch(`API_URL/users/${username}/settings`, {
+      await fetch(`${API_URL}/users/${username}/settings`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ userId: user.id, ...settingsForm })
