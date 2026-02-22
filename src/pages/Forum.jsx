@@ -61,7 +61,7 @@ function Forum() {
     e.preventDefault()
     if (!user) return
     try {
-      const response = await fetch(`${API_URL}/threads', {
+      const response = await fetch(`${API_URL}/threads`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

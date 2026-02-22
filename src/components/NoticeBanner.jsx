@@ -7,7 +7,7 @@ function NoticeBanner() {
   const [notices, setNotices] = useState([]);
 
   useEffect(() => {
-    fetch(`${API_URL}/notices')
+    fetch(`${API_URL}/notices`)
       .then(r => r.json())
       .then(data => setNotices(Array.isArray(data) ? data : []))
       .catch(() => setNotices([]));

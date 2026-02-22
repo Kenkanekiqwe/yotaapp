@@ -9,7 +9,7 @@ function ForumsSection({ categories, onEdit }) {
   const handleAddCategory = async () => {
     if (!formData.name.trim()) return;
     const slug = formData.slug || formData.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-    await fetch(`${API_URL}/admin/addCategory', {
+    await fetch(`${API_URL}/admin/addCategory`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name: formData.name, slug, description: formData.description, icon: formData.icon })
@@ -19,7 +19,7 @@ function ForumsSection({ categories, onEdit }) {
   };
 
   const handleDeleteCategory = async (id) => {
-    await fetch(`${API_URL}/admin/deleteCategory', {
+    await fetch(`${API_URL}/admin/deleteCategory`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ itemId: id })

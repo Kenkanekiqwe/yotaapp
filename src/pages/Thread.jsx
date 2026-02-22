@@ -122,7 +122,7 @@ function Thread() {
     e.preventDefault()
     if (!reportPost || !reportReason.trim()) return
     try {
-      await fetch(`${API_URL}/reports', {
+      await fetch(`${API_URL}/reports`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

@@ -63,7 +63,7 @@ function PluginList() {
     e.preventDefault()
     if (!user) return
     try {
-      const res = await fetch(`${API_URL}/plugins', {
+      const res = await fetch(`${API_URL}/plugins`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
