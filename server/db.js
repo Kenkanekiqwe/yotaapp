@@ -14,6 +14,8 @@ async function connectDB() {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       serverSelectionTimeoutMS: 30000,
+      retryWrites: true,
+      w: 'majority'
     });
     await client.connect();
     db = client.db();

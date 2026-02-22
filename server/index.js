@@ -71,13 +71,8 @@ app.use(cors({
   credentials: true
 }));
 
-app.use(express.json({ limit: '15mb' }));
-
-// Установка правильной кодировки для всех ответов
-app.use((req, res, next) => {
-  res.setHeader('Content-Type', 'application/json; charset=utf-8');
-  next();
-});
+app.use(express.json({ limit: '15mb', strict: false }));
+app.use(express.urlencoded({ extended: true }));
 
 // Middleware для проверки подключения к БД
 app.use((req, res, next) => {
