@@ -11,10 +11,9 @@ async function connectDB() {
   
   try {
     client = new MongoClient(MONGODB_URI, {
-      tls: true,
-      tlsAllowInvalidCertificates: false,
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
       serverSelectionTimeoutMS: 30000,
-      connectTimeoutMS: 30000,
     });
     await client.connect();
     db = client.db();
