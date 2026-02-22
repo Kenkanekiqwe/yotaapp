@@ -1,0 +1,43 @@
+.banner-container {
+  margin: 1rem 0;
+}
+
+.banner {
+  display: block;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+
+.banner:hover {
+  transform: scale(1.02);
+}
+
+.banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.banner-placeholder {
+  display: block;
+  padding: 2rem;
+  text-align: center;
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.banner-top {
+  margin-bottom: 2rem;
+}
+
+.banner-sidebar {
+  margin-bottom: 1rem;
+}
+
+.banner-bottom {
+  margin-top: 2rem;
+}

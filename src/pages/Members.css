@@ -1,0 +1,149 @@
+.members {
+  padding: 1.5rem 0;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.members h1 {
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+}
+
+.members-controls {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.members-controls .search-input {
+  flex: 1;
+  max-width: 320px;
+  padding: 0.65rem 1rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+}
+
+.members-controls .search-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.members-controls .sort-select {
+  padding: 0.65rem 1rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+}
+
+.members-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.member-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.25rem;
+  text-align: center;
+  transition: all 0.2s;
+  text-decoration: none;
+  color: inherit;
+}
+
+.member-card:hover {
+  border-color: var(--accent);
+}
+
+.member-header {
+  position: relative;
+  display: inline-block;
+}
+
+.member-header .member-avatar {
+  margin: 0 auto 0.75rem;
+  width: 64px;
+  height: 64px;
+  font-size: 1.5rem;
+}
+
+.online-badge {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: var(--success);
+  font-size: 0.7rem;
+}
+
+.member-username {
+  color: var(--text-primary);
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.member-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.status-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--text-muted);
+}
+
+.status-indicator.online {
+  background: var(--success);
+  box-shadow: 0 0 8px var(--success);
+}
+
+.member-stats {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+  margin-top: 0.75rem;
+}
+
+.member-stat {
+  text-align: center;
+}
+
+.member-stat .stat-label {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.member-stat .stat-value {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.member-joined {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .members-grid {
+    grid-template-columns: 1fr;
+  }
+}

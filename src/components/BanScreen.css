@@ -1,0 +1,110 @@
+.ban-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.ban-screen-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+}
+
+.ban-screen-card {
+  position: relative;
+  max-width: 440px;
+  width: 100%;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+  animation: banFadeIn 0.4s ease-out;
+}
+
+@keyframes banFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.ban-screen-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  filter: grayscale(0.2);
+}
+
+.ban-screen-card h1 {
+  font-size: 1.75rem;
+  color: var(--danger);
+  margin-bottom: 0.25rem;
+}
+
+.ban-screen-subtitle {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.ban-info-list {
+  background: var(--bg-tertiary);
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+  text-align: left;
+}
+
+.ban-info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.ban-info-row:last-child {
+  border-bottom: none;
+}
+
+.ban-info-label {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.ban-info-value {
+  color: var(--text-primary);
+  font-weight: 500;
+  text-align: right;
+}
+
+.ban-reason {
+  color: var(--danger);
+}
+
+.ban-expires {
+  color: var(--warning);
+}
+
+.ban-screen-note {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.ban-close-btn {
+  width: 100%;
+}

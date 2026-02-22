@@ -1,0 +1,32 @@
+.display-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.display-name-check {
+  color: #22c55e;
+  font-size: 0.72em;
+  line-height: 1;
+}
+
+.display-name-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--name-color1, #4a9eff) 0%,
+    var(--name-color2, #f97316) 30%,
+    #ffffff 50%,
+    var(--name-color2, #f97316) 70%,
+    var(--name-color1, #4a9eff) 100%
+  );
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+  animation: name-shimmer 2.4s linear infinite;
+}
+
+@keyframes name-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}

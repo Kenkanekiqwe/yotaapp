@@ -1,0 +1,12 @@
+# Игнорировать фронтенд файлы при деплое на Railway
+src/
+public/
+index.html
+vite.config.js
+vercel.json
+dist/
+node_modules/
+upload/
+
+# Оставить только серверные файлы
+!server/

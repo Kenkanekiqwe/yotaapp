@@ -1,0 +1,411 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* RustMods / OxideRussia — тёмная схема */
+  --bg-primary: #141619;
+  --bg-secondary: #1c1f24;
+  --bg-tertiary: #25282e;
+  --bg-hover: #2e3239;
+  --bg-card: #1c1f24;
+  
+  --text-primary: #e8eaed;
+  --text-secondary: #9ca3af;
+  --text-muted: #6b7280;
+  
+  --accent: #e07c3e;
+  --accent-hover: #c96b2e;
+  --accent-light: rgba(224, 124, 62, 0.12);
+  
+  --border: #2e3239;
+  --border-light: #3b4049;
+  
+  --success: #4caf50;
+  --warning: #ff9800;
+  --danger: #f44336;
+  --info: #2196f3;
+  
+  /* Тени */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Светлая тема */
+[data-theme="light"] {
+  --bg-primary: #f5f5f5;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #e8e8e8;
+  --bg-hover: #e0e0e0;
+  
+  --text-primary: #1a1a1a;
+  --text-secondary: #666666;
+  --text-muted: #999999;
+  
+  --accent: #2196f3;
+  --accent-hover: #1976d2;
+  --accent-light: rgba(33, 150, 243, 0.1);
+  
+  --border: #e0e0e0;
+  --border-light: #d0d0d0;
+  
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Синяя тема */
+[data-theme="blue"] {
+  --bg-primary: #1e3a5f;
+  --bg-secondary: #2c5282;
+  --bg-tertiary: #3a6ba5;
+  --bg-hover: #4a7bb8;
+  
+  --text-primary: #e8f4f8;
+  --text-secondary: #b8d4e8;
+  --text-muted: #88a4b8;
+  
+  --accent: #64b5f6;
+  --accent-hover: #42a5f5;
+  --accent-light: rgba(100, 181, 246, 0.15);
+  
+  --border: #3a6ba5;
+  --border-light: #4a7bb8;
+  
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.6);
+}
+
+/* Зеленая тема */
+[data-theme="green"] {
+  --bg-primary: #1e4620;
+  --bg-secondary: #2d5a2e;
+  --bg-tertiary: #3c6e3d;
+  --bg-hover: #4b824c;
+  
+  --text-primary: #e8f5e9;
+  --text-secondary: #b8d8b9;
+  --text-muted: #88b889;
+  
+  --accent: #66bb6a;
+  --accent-hover: #4caf50;
+  --accent-light: rgba(102, 187, 106, 0.15);
+  
+  --border: #3c6e3d;
+  --border-light: #4b824c;
+  
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.6);
+}
+
+/* Фиолетовая тема */
+[data-theme="purple"] {
+  --bg-primary: #2d1b3d;
+  --bg-secondary: #1a0f26;
+  --bg-tertiary: #3d2750;
+  --bg-hover: #4d3360;
+  
+  --text-primary: #f3e5f5;
+  --text-secondary: #d3b5d5;
+  --text-muted: #b395b5;
+  
+  --accent: #ba68c8;
+  --accent-hover: #ab47bc;
+  --accent-light: rgba(186, 104, 200, 0.15);
+  
+  --border: #3d2750;
+  --border-light: #4d3360;
+  
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.7);
+}
+
+/* Красная тема */
+[data-theme="red"] {
+  --bg-primary: #3d1b1b;
+  --bg-secondary: #260f0f;
+  --bg-tertiary: #502727;
+  --bg-hover: #603333;
+  
+  --text-primary: #ffe5e5;
+  --text-secondary: #d5b5b5;
+  --text-muted: #b59595;
+  
+  --accent: #ef5350;
+  --accent-hover: #e53935;
+  --accent-light: rgba(239, 83, 80, 0.15);
+  
+  --border: #502727;
+  --border-light: #603333;
+  
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.7);
+}
+
+/* Оранжевая тема */
+[data-theme="orange"] {
+  --bg-primary: #3d2a1b;
+  --bg-secondary: #261a0f;
+  --bg-tertiary: #503627;
+  --bg-hover: #604233;
+  
+  --text-primary: #fff3e5;
+  --text-secondary: #d5c3b5;
+  --text-muted: #b5a395;
+  
+  --accent: #ff9800;
+  --accent-hover: #f57c00;
+  --accent-light: rgba(255, 152, 0, 0.15);
+  
+  --border: #503627;
+  --border-light: #604233;
+  
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.7);
+}
+
+/* Серая тема */
+[data-theme="gray"] {
+  --bg-primary: #2a2a2a;
+  --bg-secondary: #1f1f1f;
+  --bg-tertiary: #353535;
+  --bg-hover: #404040;
+  
+  --text-primary: #e8e8e8;
+  --text-secondary: #b8b8b8;
+  --text-muted: #888888;
+  
+  --accent: #9e9e9e;
+  --accent-hover: #757575;
+  --accent-light: rgba(158, 158, 158, 0.15);
+  
+  --border: #353535;
+  --border-light: #404040;
+  
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.6);
+}
+
+/* AMOLED Black тема */
+[data-theme="amoled"] {
+  --bg-primary: #000000;
+  --bg-secondary: #0a0a0a;
+  --bg-tertiary: #151515;
+  --bg-hover: #202020;
+  
+  --text-primary: #ffffff;
+  --text-secondary: #b8b8b8;
+  --text-muted: #888888;
+  
+  --accent: #4a9eff;
+  --accent-hover: #3d8de6;
+  --accent-light: rgba(74, 158, 255, 0.15);
+  
+  --border: #151515;
+  --border-light: #202020;
+  
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.8);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.9);
+  --shadow-lg: 0 10px 20px rgba(0, 0, 0, 1);
+}
+
+/* Cyberpunk тема */
+[data-theme="cyberpunk"] {
+  --bg-primary: #0f0f23;
+  --bg-secondary: #1a1a2e;
+  --bg-tertiary: #16213e;
+  --bg-hover: #0f3460;
+  
+  --text-primary: #00fff5;
+  --text-secondary: #00d9ff;
+  --text-muted: #0088cc;
+  
+  --accent: #ff00ff;
+  --accent-hover: #cc00cc;
+  --accent-light: rgba(255, 0, 255, 0.15);
+  
+  --border: #16213e;
+  --border-light: #0f3460;
+  
+  --shadow-sm: 0 1px 3px rgba(255, 0, 255, 0.3);
+  --shadow-md: 0 4px 6px rgba(255, 0, 255, 0.4);
+  --shadow-lg: 0 10px 20px rgba(255, 0, 255, 0.5);
+}
+
+body {
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+code {
+  font-family: 'Courier New', Courier, monospace;
+  background: var(--bg-tertiary);
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: var(--accent-hover);
+}
+
+button {
+  font-family: inherit;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Кнопки */
+.btn-primary {
+  background: linear-gradient(180deg, var(--accent), var(--accent-hover));
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.4rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-light);
+  padding: 0.6rem 1.4rem;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  background: var(--bg-hover);
+  border-color: var(--accent);
+}
+
+/* Карточки */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: all 0.2s;
+}
+
+.card:hover {
+  border-color: var(--border-light);
+}
+
+/* Формы */
+input, textarea, select {
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.75rem;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  transition: all 0.2s;
+  width: 100%;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-light);
+}
+
+/* Кастомные чекбоксы везде (стиль TikTok: белая галочка на цветном фоне) */
+input[type="checkbox"] {
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  min-width: 22px;
+  border: 2px solid var(--border-light);
+  border-radius: 6px;
+  cursor: pointer;
+  background: var(--bg-tertiary);
+  transition: all 0.2s;
+  position: relative;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+input[type="checkbox"]:hover {
+  border-color: var(--accent);
+}
+
+input[type="checkbox"]:checked {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+input[type="checkbox"]:checked::after {
+  content: '✓';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+/* Скроллбар */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bg-tertiary);
+  border-radius: 6px;
+  border: 2px solid var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--bg-hover);
+}
+
+/* Утилиты */
+.loading {
+  text-align: center;
+  padding: 3rem;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
