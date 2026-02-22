@@ -1555,6 +1555,145 @@ app.get('/api/admin/warnings', async (req, res) => {
   res.json([]);
 });
 
+// Админ - группы пользователей
+app.get('/api/admin/groups', async (req, res) => {
+  try {
+    const groups = await db.collection('user_groups').find().toArray();
+    res.json(groups.map(g => ({ ...g, id: g._id })));
+  } catch (error) {
+    res.json([]);
+  }
+});
+
+app.post('/api/admin/addGroup', async (req, res) => {
+  try {
+    const { name, permissions } = req.body;
+    const result = await db.collection('user_groups').insertOne({
+      name,
+      permissions: permissions || [],
+      created_at: new Date()
+    });
+    res.json({ success: true, id: result.insertedId });
+  } catch (error) {
+    res.status(500).json({ error: 'Ошибка создания группы' });
+  }
+});
+
+app.post('/api/admin/editGroup', async (req, res) => {
+  try {
+    const { itemId, name, permissions } = req.body;
+    await db.collection('user_groups').updateOne(
+      { _id: new ObjectId(itemId) },
+      { $set: { name, permissions } }
+    );
+    res.json({ success: true });
+  } catch (error) {
+    res.status(500).json({ error: 'Ошибка обновления группы' });
+  }
+});
+
+app.post('/api/admin/deleteGroup', async (req, res) => {
+  try {
+    const { itemId } = req.body;
+    await db.collection('user_groups').deleteOne({ _id: new ObjectId(itemId) });
+    res.json({ success: true });
+  } catch (error) {
+    res.status(500).json({ error: 'Ошибка удаления группы' });
+  }
+});
+
+// Админ - модераторы
+app.get('/api/admin/moderators', async (req, res) => {
+  try {
+    const moderators = await db.collection('users').find({ 
+      role: { $in: ['moderator', 'admin'] } 
+    }).toArray();
+    res.json(moderators.map(m => ({
+      id: m._id,
+      username: m.username,
+      role: m.role,
+      email: m.email
+    })));
+  } catch (error) {
+    res.json([]);
+  }
+});
+
+// Админ - логи
+app.get('/api/admin/logs', async (req, res) => {
+  try {
+    const logs = await db.collection('admin_logs')
+      .find()
+      .sort({ created_at: -1 })
+      .limit(100)
+      .toArray();
+    res.json(logs.map(l => ({ ...l, id: l._id })));
+  } catch (error) {
+    res.json([]);
+  }
+});
+
+app.post('/api/admin/addLog', async (req, res) => {
+  try {
+    const { action, details, userId } = req.body;
+    await db.collection('admin_logs').insertOne({
+      action,
+      details,
+      user_id: new ObjectId(userId),
+      created_at: new Date()
+    });
+    res.json({ success: true });
+  } catch (error) {
+    res.status(500).json({ error: 'Ошибка записи лога' });
+  }
+});
+
+// Админ - бэкапы
+app.get('/api/admin/backups', async (req, res) => {
+  try {
+    const backups = await db.collection('backups')
+      .find()
+      .sort({ created_at: -1 })
+      .toArray();
+    res.json(backups.map(b => ({ ...b, id: b._id })));
+  } catch (error) {
+    res.json([]);
+  }
+});
+
+app.post('/api/admin/createBackup', async (req, res) => {
+  try {
+    const { name } = req.body;
+    const collections = ['users', 'threads', 'posts', 'plugins', 'categories'];
+    const backupData = {};
+    
+    for (const col of collections) {
+      backupData[col] = await db.collection(col).find().toArray();
+    }
+    
+    await db.collection('backups').insertOne({
+      name: name || `backup_${Date.now()}`,
+      data: backupData,
+      size: JSON.stringify(backupData).length,
+      created_at: new Date()
+    });
+    
+    res.json({ success: true });
+  } catch (error) {
+    res.status(500).json({ error: 'Ошибка создания бэкапа' });
+  }
+});
+
+app.post('/api/admin/deleteBackup', async (req, res) => {
+  try {
+    const { itemId } = req.body;
+    await db.collection('backups').deleteOne({ _id: new ObjectId(itemId) });
+    res.json({ success: true });
+  } catch (error) {
+    res.status(500).json({ error: 'Ошибка удаления бэкапа' });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
   console.log(`📊 Health check: http://localhost:${PORT}/health`);
