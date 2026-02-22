@@ -6,6 +6,8 @@ import { useToast } from '../context/ToastContext'
 import Avatar from '../components/Avatar'
 import DisplayName from '../components/DisplayName'
 import './Forum.css'
+import { API_URL } from '../config';
+
 
 function Forum() {
   const { category } = useParams()
@@ -59,7 +61,7 @@ function Forum() {
     e.preventDefault()
     if (!user) return
     try {
-      const response = await fetch('http://localhost:3001/api/threads', {
+      const response = await fetch('API_URL/threads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

@@ -1,10 +1,10 @@
-п»їfunction UsersSection({ users, onAction, onEdit }) {
+function UsersSection({ users, onAction, onEdit }) {
   if (!users || users.length === 0) {
     return (
       <div className="admin-section">
-        <h1>РЈРїСЂР°РІР»РµРЅРёРµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏРјРё</h1>
+        <h1>Управление пользователями</h1>
         <div style={{ textAlign: 'center', padding: '3rem', color: 'var(--text-secondary)' }}>
-          <p>РќРµС‚ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ</p>
+          <p>Нет пользователей для отображения</p>
         </div>
       </div>
     );
@@ -13,10 +13,10 @@
   return (
     <div className="admin-section">
       <div className="section-header">
-        <h1>РЈРїСЂР°РІР»РµРЅРёРµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏРјРё</h1>
+        <h1>Управление пользователями</h1>
         <div className="header-actions">
-          <input type="text" placeholder="РџРѕРёСЃРє РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№..." className="search-input" />
-          <button className="btn-secondary">Р¤РёР»СЊС‚СЂ</button>
+          <input type="text" placeholder="Поиск пользователей..." className="search-input" />
+          <button className="btn-secondary">Фильтр</button>
         </div>
       </div>
       
@@ -25,11 +25,11 @@
           <thead>
             <tr>
               <th>ID</th>
-              <th>РРјСЏ</th>
+              <th>Имя</th>
               <th>Email</th>
-              <th>Р РѕР»СЊ</th>
-              <th>РЎС‚Р°С‚СѓСЃ</th>
-              <th>Р”РµР№СЃС‚РІРёСЏ</th>
+              <th>Роль</th>
+              <th>Статус</th>
+              <th>Действия</th>
             </tr>
           </thead>
           <tbody>
@@ -66,22 +66,22 @@
                   <td>{user.email}</td>
                   <td>
                     <span className={`role-badge role-${user.role}`}>
-                      {user.role === 'admin' && 'рџ‘‘ РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂ'}
-                      {user.role === 'moderator' && 'рџ›ЎпёЏ РњРѕРґРµСЂР°С‚РѕСЂ'}
-                      {user.role === 'user' && 'рџ‘¤ РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ'}
+                      {user.role === 'admin' && '?? Администратор'}
+                      {user.role === 'moderator' && '??? Модератор'}
+                      {user.role === 'user' && '?? Пользователь'}
                     </span>
                   </td>
-                  <td>{user.banned ? 'рџљ« Р—Р°Р±Р°РЅРµРЅ' : 'вњ… РђРєС‚РёРІРµРЅ'}</td>
+                  <td>{user.banned ? '?? Забанен' : '? Активен'}</td>
                   <td>
                     <div className="admin-actions">
                       <button className="admin-btn admin-btn-edit" onClick={() => onEdit('editUser', user)}>
-                        Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ
+                        Редактировать
                       </button>
                       <button 
                         className="admin-btn admin-btn-ban" 
-                        onClick={() => onAction('banUser', user.id, { reason: 'РќР°СЂСѓС€РµРЅРёРµ РїСЂР°РІРёР»' })}
+                        onClick={() => onAction('banUser', user.id, { reason: 'Нарушение правил' })}
                       >
-                        {user.banned ? 'Р Р°Р·Р±Р°РЅРёС‚СЊ' : 'Р—Р°Р±Р°РЅРёС‚СЊ'}
+                        {user.banned ? 'Разбанить' : 'Забанить'}
                       </button>
                     </div>
                   </td>

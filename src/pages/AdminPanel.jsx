@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '../context/ToastContext';
+import { API_URL } from '../config';
 import './AdminPanel.css';
 
 // Import sections
@@ -64,20 +65,20 @@ function AdminPanel() {
   const loadData = async () => {
     try {
       const urls = [
-        'http://localhost:3001/api/admin/threads',
-        'http://localhost:3001/api/admin/users',
-        'http://localhost:3001/api/admin/plugins',
-        'http://localhost:3001/api/admin/banners',
-        'http://localhost:3001/api/categories',
-        'http://localhost:3001/api/stats',
-        'http://localhost:3001/api/admin/groups',
-        'http://localhost:3001/api/admin/moderators',
-        'http://localhost:3001/api/admin/warnings',
-        'http://localhost:3001/api/admin/reports',
-        'http://localhost:3001/api/admin/notices',
-        'http://localhost:3001/api/admin/settings',
-        'http://localhost:3001/api/admin/logs',
-        'http://localhost:3001/api/admin/backups'
+        'API_URL/admin/threads',
+        'API_URL/admin/users',
+        'API_URL/admin/plugins',
+        'API_URL/admin/banners',
+        'API_URL/categories',
+        'API_URL/stats',
+        'API_URL/admin/groups',
+        'API_URL/admin/moderators',
+        'API_URL/admin/warnings',
+        'API_URL/admin/reports',
+        'API_URL/admin/notices',
+        'API_URL/admin/settings',
+        'API_URL/admin/logs',
+        'API_URL/admin/backups'
       ];
       const results = await Promise.all(urls.map(u => fetch(u).catch(() => ({ json: () => [] })).then(r => r.json().catch(() => []))));
       
@@ -103,7 +104,7 @@ function AdminPanel() {
   const handleAction = async (action, itemId, data = {}) => {
     try {
       const body = action === 'addPlugin' ? { ...data, author_id: data.author_id || user?.id } : { itemId, ...data };
-      const res = await fetch(`http://localhost:3001/api/admin/${action}`, {
+      const res = await fetch(`API_URL/admin/${action}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body)
@@ -130,12 +131,12 @@ function AdminPanel() {
   const handleGroupAction = async (action, groupId, data = {}) => {
     try {
       const apiAction = action === 'addGroup' ? 'addGroup' : action === 'editGroup' ? 'editGroup' : 'deleteGroup';
-      await fetch(`http://localhost:3001/api/admin/${apiAction}`, {
+      await fetch(`API_URL/admin/${apiAction}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ itemId: groupId, ...data })
       });
-      const groupsRes = await fetch('http://localhost:3001/api/admin/groups');
+      const groupsRes = await fetch('API_URL/admin/groups');
       const groupsData = await groupsRes.json();
       setGroups(Array.isArray(groupsData) ? groupsData : groups);
       setShowModal(false);

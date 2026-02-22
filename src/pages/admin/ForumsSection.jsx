@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { API_URL } from '../../config';
+
 
 function ForumsSection({ categories, onEdit }) {
   const [showAddModal, setShowAddModal] = useState(false);
@@ -7,7 +9,7 @@ function ForumsSection({ categories, onEdit }) {
   const handleAddCategory = async () => {
     if (!formData.name.trim()) return;
     const slug = formData.slug || formData.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-    await fetch('http://localhost:3001/api/admin/addCategory', {
+    await fetch('API_URL/admin/addCategory', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name: formData.name, slug, description: formData.description, icon: formData.icon })
@@ -17,7 +19,7 @@ function ForumsSection({ categories, onEdit }) {
   };
 
   const handleDeleteCategory = async (id) => {
-    await fetch('http://localhost:3001/api/admin/deleteCategory', {
+    await fetch('API_URL/admin/deleteCategory', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ itemId: id })

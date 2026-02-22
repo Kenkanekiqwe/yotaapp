@@ -1,9 +1,9 @@
-п»їfunction BannersSection({ banners, onAction, onEdit }) {
+function BannersSection({ banners, onAction, onEdit }) {
   return (
     <div className="admin-section">
       <div className="section-header">
-        <h1>РЈРїСЂР°РІР»РµРЅРёРµ Р±Р°РЅРЅРµСЂР°РјРё</h1>
-        <button className="btn-primary" onClick={() => onEdit('addBanner')}>+ Р”РѕР±Р°РІРёС‚СЊ Р±Р°РЅРЅРµСЂ</button>
+        <h1>Управление баннерами</h1>
+        <button className="btn-primary" onClick={() => onEdit('addBanner')}>+ Добавить баннер</button>
       </div>
       
       <div className="admin-table-container">
@@ -11,12 +11,12 @@
           <thead>
             <tr>
               <th>ID</th>
-              <th>РќР°Р·РІР°РЅРёРµ</th>
-              <th>РР·РѕР±СЂР°Р¶РµРЅРёРµ</th>
-              <th>РЎСЃС‹Р»РєР°</th>
-              <th>РџРѕР·РёС†РёСЏ</th>
-              <th>РЎС‚Р°С‚СѓСЃ</th>
-              <th>Р”РµР№СЃС‚РІРёСЏ</th>
+              <th>Название</th>
+              <th>Изображение</th>
+              <th>Ссылка</th>
+              <th>Позиция</th>
+              <th>Статус</th>
+              <th>Действия</th>
             </tr>
           </thead>
           <tbody>
@@ -27,10 +27,10 @@
                 <td><img src={banner.image_url} alt={banner.title} style={{ maxWidth: '100px', height: 'auto' }} /></td>
                 <td><a href={banner.url} target="_blank" rel="noopener noreferrer">{banner.url}</a></td>
                 <td>{banner.position}</td>
-                <td>{banner.active ? 'вњ… РђРєС‚РёРІРµРЅ' : 'вќЊ РќРµР°РєС‚РёРІРµРЅ'}</td>
+                <td>{banner.active ? '? Активен' : '? Неактивен'}</td>
                 <td>
-                  <button className="btn-small" onClick={() => onEdit('editBanner', banner)}>РР·РјРµРЅРёС‚СЊ</button>
-                  <button className="btn-small btn-danger" onClick={() => onAction('deleteBanner', banner.id)}>РЈРґР°Р»РёС‚СЊ</button>
+                  <button className="btn-small" onClick={() => onEdit('editBanner', banner)}>Изменить</button>
+                  <button className="btn-small btn-danger" onClick={() => onAction('deleteBanner', banner.id)}>Удалить</button>
                 </td>
               </tr>
             ))}

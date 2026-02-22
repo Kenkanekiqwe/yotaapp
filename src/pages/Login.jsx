@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { API_URL } from '../config';
 import './Login.css';
 
-const API = 'http://localhost:3001/api';
+const API = API_URL;
 
 function Login() {
   const [username, setUsername] = useState('');

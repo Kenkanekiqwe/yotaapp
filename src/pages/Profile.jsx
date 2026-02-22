@@ -5,6 +5,8 @@ import { useToast } from '../context/ToastContext'
 import UserBadge from '../components/UserBadge'
 import Avatar from '../components/Avatar'
 import './Profile.css'
+import { API_URL } from '../config';
+
 
 function Profile() {
   const { username } = useParams()
@@ -23,7 +25,7 @@ function Profile() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await fetch(`http://localhost:3001/api/users/${username}`)
+        const res = await fetch(`API_URL/users/${username}`)
         const data = await res.json()
         setProfileUser(data)
         setFormData({
@@ -45,7 +47,7 @@ function Profile() {
 
   useEffect(() => {
     if (isOwnProfile && profileUser) {
-      fetch(`http://localhost:3001/api/users/${username}/settings`)
+      fetch(`API_URL/users/${username}/settings`)
         .then(r => r.json())
         .then(data => {
           setProfileSettings(data)
@@ -62,7 +64,7 @@ function Profile() {
   const handleSaveProfile = async (e) => {
     e.preventDefault()
     try {
-      await fetch(`http://localhost:3001/api/users/${username}`, {
+      await fetch(`API_URL/users/${username}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ userId: user.id, ...formData })
@@ -78,7 +80,7 @@ function Profile() {
   const handleSaveSettings = async (e) => {
     e.preventDefault()
     try {
-      await fetch(`http://localhost:3001/api/users/${username}/settings`, {
+      await fetch(`API_URL/users/${username}/settings`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ userId: user.id, ...settingsForm })

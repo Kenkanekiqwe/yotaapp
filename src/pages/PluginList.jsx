@@ -4,6 +4,8 @@ import { useAuth } from '../context/AuthContext'
 import { useToast } from '../context/ToastContext'
 import { api } from '../api/api'
 import './PluginList.css'
+import { API_URL } from '../config';
+
 
 function PluginList() {
   const { user } = useAuth()
@@ -61,7 +63,7 @@ function PluginList() {
     e.preventDefault()
     if (!user) return
     try {
-      const res = await fetch('http://localhost:3001/api/plugins', {
+      const res = await fetch('API_URL/plugins', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

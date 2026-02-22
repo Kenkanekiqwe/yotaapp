@@ -1,9 +1,9 @@
-п»їfunction PluginsSection({ plugins, onAction, onEdit }) {
+function PluginsSection({ plugins, onAction, onEdit }) {
   return (
     <div className="admin-section">
       <div className="section-header">
-        <h1>РЈРїСЂР°РІР»РµРЅРёРµ РїР»Р°РіРёРЅР°РјРё</h1>
-        <button className="btn-primary" onClick={() => onEdit('addPlugin')}>+ Р”РѕР±Р°РІРёС‚СЊ РїР»Р°РіРёРЅ</button>
+        <h1>Управление плагинами</h1>
+        <button className="btn-primary" onClick={() => onEdit('addPlugin')}>+ Добавить плагин</button>
       </div>
       
       <div className="admin-table-container">
@@ -11,13 +11,13 @@
           <thead>
             <tr>
               <th>ID</th>
-              <th>РќР°Р·РІР°РЅРёРµ</th>
-              <th>РђРІС‚РѕСЂ</th>
-              <th>Р’РµСЂСЃРёСЏ</th>
-              <th>Р—Р°РіСЂСѓР·РєРё</th>
-              <th>Р¦РµРЅР°</th>
-              <th>Р”Р°С‚Р°</th>
-              <th>Р”РµР№СЃС‚РІРёСЏ</th>
+              <th>Название</th>
+              <th>Автор</th>
+              <th>Версия</th>
+              <th>Загрузки</th>
+              <th>Цена</th>
+              <th>Дата</th>
+              <th>Действия</th>
             </tr>
           </thead>
           <tbody>
@@ -28,11 +28,11 @@
                 <td>{plugin.author_name}</td>
                 <td>{plugin.version}</td>
                 <td>{plugin.downloads}</td>
-                <td>{plugin.price > 0 ? `${plugin.price}в‚Ѕ` : 'Р‘РµСЃРїР»Р°С‚РЅРѕ'}</td>
+                <td>{plugin.price > 0 ? `${plugin.price}?` : 'Бесплатно'}</td>
                 <td>{new Date(plugin.created_at).toLocaleDateString()}</td>
                 <td>
-                  <button className="btn-small" onClick={() => onEdit('editPlugin', plugin)}>РР·РјРµРЅРёС‚СЊ</button>
-                  <button className="btn-small btn-danger" onClick={() => onAction('deletePlugin', plugin.id)}>РЈРґР°Р»РёС‚СЊ</button>
+                  <button className="btn-small" onClick={() => onEdit('editPlugin', plugin)}>Изменить</button>
+                  <button className="btn-small btn-danger" onClick={() => onAction('deletePlugin', plugin.id)}>Удалить</button>
                 </td>
               </tr>
             ))}

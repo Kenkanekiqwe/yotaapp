@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useToast } from '../../context/ToastContext';
+import { API_URL } from '../../config';
+
 
 function BackupSection({ backups, onAction, loadData }) {
   const { addToast } = useToast();
@@ -14,7 +16,7 @@ function BackupSection({ backups, onAction, loadData }) {
   };
 
   const handleDownloadBackup = (name) => {
-    window.open(`http://localhost:3001/api/admin/backup/download?name=${encodeURIComponent(name)}`, '_blank');
+    window.open(`API_URL/admin/backup/download?name=${encodeURIComponent(name)}`, '_blank');
   };
 
   return (

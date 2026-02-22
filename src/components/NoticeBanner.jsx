@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import './NoticeBanner.css';
+import { API_URL } from '../config';
+
 
 function NoticeBanner() {
   const [notices, setNotices] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3001/api/notices')
+    fetch('API_URL/notices')
       .then(r => r.json())
       .then(data => setNotices(Array.isArray(data) ? data : []))
       .catch(() => setNotices([]));

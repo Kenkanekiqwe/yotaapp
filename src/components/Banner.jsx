@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { API_URL } from '../config';
 import './Banner.css';
 
 function Banner({ position = 'top' }) {
@@ -16,7 +17,7 @@ function Banner({ position = 'top' }) {
 
   const loadBanners = async () => {
     try {
-      const res = await fetch(`http://localhost:3001/api/banners?position=${position}`);
+      const res = await fetch(`API_URL/banners?position=${position}`);
       const data = await res.json();
       setBanners(data);
     } catch (error) {
