@@ -10,7 +10,12 @@ async function connectDB() {
   if (db) return db;
   
   try {
-    client = new MongoClient(MONGODB_URI);
+    client = new MongoClient(MONGODB_URI, {
+      tls: true,
+      tlsAllowInvalidCertificates: false,
+      serverSelectionTimeoutMS: 30000,
+      connectTimeoutMS: 30000,
+    });
     await client.connect();
     db = client.db();
     console.log('✅ Connected to MongoDB');
